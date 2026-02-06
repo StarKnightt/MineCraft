@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Grass block favicon  pixel art style -->
+  <!-- Dirt body -->
+  <rect width="32" height="32" fill="#8b6914"/>
+  <!-- Darker dirt noise -->
+  <rect x="4" y="16" width="4" height="4" fill="#7a5c10"/>
+  <rect x="12" y="20" width="4" height="4" fill="#7a5c10"/>
+  <rect x="24" y="18" width="4" height="4" fill="#7a5c10"/>
+  <rect x="8" y="24" width="4" height="4" fill="#7a5c10"/>
+  <rect x="20" y="26" width="4" height="4" fill="#7a5c10"/>
+  <rect x="0" y="22" width="4" height="4" fill="#7a5c10"/>
+  <rect x="16" y="14" width="4" height="4" fill="#7a5c10"/>
+  <rect x="28" y="24" width="4" height="4" fill="#7a5c10"/>
+  <!-- Lighter dirt highlights -->
+  <rect x="8" y="14" width="4" height="4" fill="#9c7a20"/>
+  <rect x="20" y="20" width="4" height="4" fill="#9c7a20"/>
+  <rect x="0" y="28" width="4" height="4" fill="#9c7a20"/>
+  <rect x="16" y="28" width="4" height="4" fill="#9c7a20"/>
+  <!-- Grass top layer -->
+  <rect width="32" height="10" fill="#5d9b3a"/>
+  <!-- Grass variation -->
+  <rect x="0" y="0" width="4" height="4" fill="#4e8a2e"/>
+  <rect x="8" y="0" width="4" height="4" fill="#6aad42"/>
+  <rect x="16" y="0" width="4" height="4" fill="#4e8a2e"/>
+  <rect x="24" y="0" width="4" height="4" fill="#6aad42"/>
+  <rect x="4" y="4" width="4" height="4" fill="#6aad42"/>
+  <rect x="12" y="4" width="4" height="4" fill="#4e8a2e"/>
+  <rect x="20" y="4" width="4" height="4" fill="#6aad42"/>
+  <rect x="28" y="4" width="4" height="4" fill="#4e8a2e"/>
+  <!-- Grass-to-dirt transition -->
+  <rect x="0" y="10" width="4" height="4" fill="#5d9b3a"/>
+  <rect x="8" y="10" width="4" height="4" fill="#5d9b3a"/>
+  <rect x="20" y="10" width="4" height="4" fill="#5d9b3a"/>
+  <rect x="28" y="10" width="4" height="4" fill="#5d9b3a"/>
+</svg>
