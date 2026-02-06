@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+# Minecraft Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Minecraft-inspired voxel game running entirely in the browser, built with React, TypeScript, and Three.js.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react)
+![Three.js](https://img.shields.io/badge/Three.js-r182-black?logo=threedotjs)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript)
+![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **First-person controls** — WASD movement, mouse look, jump, sneak
+- **Block system** — 5 block types: grass, dirt, stone, wood, glass
+- **Place & break** — Left-click to place, right-click to break with raycasting
+- **Per-face textures** — Grass has green top, dirt bottom, textured sides
+- **Procedural terrain** — Rolling hills with trees generated at startup
+- **Physics & collision** — Custom grid-based AABB collision with sub-stepping
+- **Sound effects** — Procedural audio (place, break, footsteps, jump, respawn) via Web Audio API
+- **Mobile support** — Virtual joystick, touch look, action buttons
+- **Auto respawn** — Fall into the void and teleport back to spawn
+- **Hotbar UI** — Select block types with keys 1-5 or click the toolbar
+- **Performance optimized** — Instanced meshes, zero-alloc collision, memoized components, FPS overlay
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+| Layer | Technology |
+|-------|-----------|
+| Framework | React 19 + TypeScript |
+| 3D Engine | Three.js via @react-three/fiber |
+| Helpers | @react-three/drei (Sky, PointerLockControls) |
+| State | Zustand (in-place mutation + version counter) |
+| Audio | Web Audio API (procedural, no audio files) |
+| Build | Vite 7 with code-split chunks |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Start dev server
+npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Controls
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Desktop
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Action | Input |
+|--------|-------|
+| Move | W A S D |
+| Look | Mouse |
+| Jump | Space |
+| Sneak | Shift |
+| Place block | Left-click |
+| Break block | Right-click |
+| Select block | 1 - 5 |
+
+### Mobile
+
+| Action | Input |
+|--------|-------|
+| Move | Left joystick |
+| Look | Drag right side of screen |
+| Jump / Place / Break | On-screen buttons |
+| Select block | Tap hotbar |
+
+## Project Structure
+
 ```
+src/
+├── audio/
+│   └── sounds.ts           # Procedural sound effects
+├── components/
+│   ├── Block.tsx            # Instanced mesh block renderer
+│   ├── Ground.tsx           # Invisible click plane
+│   ├── MobileControls.tsx   # Touch gamepad overlay
+│   ├── Player.tsx           # First-person controller + collision
+│   └── Scene.tsx            # R3F Canvas + lighting + sky
+├── hooks/
+│   └── useKeyboard.ts       # Zero-rerender keyboard input
+├── store/
+│   └── useStore.ts          # Zustand game state
+├── textures/
+│   └── index.ts             # Texture loading + material cache
+├── types/
+│   └── index.ts             # Shared TypeScript types
+├── App.tsx                  # Root component + HUD
+├── index.css                # Global styles + mobile UI
+└── main.tsx                 # Entry point
+```
+
+## Performance
+
+- **5 draw calls** total (one instanced mesh per block type)
+- **In-place block mutation** — no 5K-key object copy on add/remove
+- **Cached position keys** — zero string allocation in collision loop
+- **Pre-built noise buffers** — audio reuses cached AudioBuffers
+- **Deduplicated materials** — shared instances for identical textures
+- **React.memo** on all leaf components to prevent cascade re-renders
+- **Code-split build** — game code ~7KB gzipped, libs cached separately
+
+## License
+
+MIT
