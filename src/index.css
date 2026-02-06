@@ -372,3 +372,69 @@ canvas {
     display: none;
   }
 }
+
+/* =============================================================
+   Rotate-to-landscape prompt (portrait mobile only)
+   ============================================================= */
+
+.rotate-prompt {
+  display: none;
+}
+
+/* Show only on touch devices in portrait orientation */
+@media (pointer: coarse) and (orientation: portrait) {
+  .rotate-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Hide everything else behind the prompt */
+  .mobile-controls,
+  .hud {
+    display: none;
+  }
+}
+
+.rotate-phone {
+  animation: rotatePhone 2s ease-in-out infinite;
+  margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes rotatePhone {
+  0%, 100% {
+    transform: rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: rotate(90deg);
+    opacity: 1;
+  }
+}
+
+.rotate-text {
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+.rotate-sub {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 6px 0 0;
+  text-align: center;
+}

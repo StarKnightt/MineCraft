@@ -76,12 +76,32 @@ const HUD = memo(function HUD() {
 
 // ---- App -----------------------------------------------------
 
+// ---- Rotate screen prompt (portrait mobile only) ------------
+
+function RotatePrompt() {
+  return (
+    <div className="rotate-prompt">
+      <div className="rotate-phone">
+        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="6" y="2" width="12" height="20" rx="2" />
+          <line x1="12" y1="18" x2="12" y2="18.01" strokeWidth="2" />
+        </svg>
+      </div>
+      <p className="rotate-text">Rotate your device to landscape</p>
+      <p className="rotate-sub">for the best experience</p>
+    </div>
+  );
+}
+
+// ---- App -----------------------------------------------------
+
 export default function App() {
   return (
     <div className="game-container">
       <Scene />
       <HUD />
       <MobileControls />
+      <RotatePrompt />
     </div>
   );
 }
